@@ -1,4 +1,4 @@
-FROM node:13.1.0-stretch-slim
+FROM node:14.15.0-stretch-slim
 
 WORKDIR /home
 
@@ -8,13 +8,13 @@ RUN apt-get update \
     curl \
     libaio1 \
     unzip \
-    && curl https://download.oracle.com/otn_software/linux/instantclient/195000/instantclient-basic-linux.x64-19.5.0.0.0dbru.zip > instantclient-basic-linux.x64-19.5.0.0.0dbru.zip \
-    && curl https://download.oracle.com/otn_software/linux/instantclient/195000/instantclient-sdk-linux.x64-19.5.0.0.0dbru.zip > instantclient-sdk-linux.x64-19.5.0.0.0dbru.zip \
+    && curl https://download.oracle.com/otn_software/linux/instantclient/199000/instantclient-basic-linux.x64-19.9.0.0.0dbru.zip > instantclient-basic-linux.zip \
+    && curl https://download.oracle.com/otn_software/linux/instantclient/199000/instantclient-sdk-linux.x64-19.9.0.0.0dbru.zip > instantclient-sdk-linux.zip \
     && mkdir -p /opt/oracle \
-    && unzip instantclient-basic-linux.x64-19.5.0.0.0dbru.zip -d /opt/oracle \
-    && unzip instantclient-sdk-linux.x64-19.5.0.0.0dbru.zip -d /opt/oracle \
+    && unzip instantclient-basic-linux.zip -d /opt/oracle \
+    && unzip instantclient-sdk-linux.zip -d /opt/oracle \
     && rm instantclient* \
-    && mv /opt/oracle/instantclient_19_5 /opt/oracle/instantclient \
+    && mv /opt/oracle/instantclient_19_9 /opt/oracle/instantclient \
     && echo '/opt/oracle/instantclient/' | tee -a /etc/ld.so.conf.d/oracle_instant_client.conf \
     && ldconfig
 
